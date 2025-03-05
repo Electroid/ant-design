@@ -18,37 +18,39 @@ const locales = {
   },
 };
 
+const useStyle = createStyles(({ css }) => ({
+  mockPreview: css`
+    position: relative;
+    inset: 0;
+    z-index: 1;
+    .ant-image-preview-close {
+      display: none;
+    }
+    .ant-image-preview-img {
+      max-height: 50%;
+    }
+    .ant-image-img {
+      visibility: hidden;
+    }
+    .ant-image-preview-operations-wrapper {
+      position: relative;
+      .ant-image-preview-footer {
+        position: absolute;
+      }
+    }
+  `,
+}));
+
 const Block = (props: any) => {
   const divRef = React.useRef<HTMLDivElement>(null);
   const { classNames, ...restProps } = props;
-  const useStyle = createStyles(({ css }) => ({
-    mockPreview: css`
-      position: relative;
-      inset: 0;
-      z-index: 1;
-      .ant-image-preview-close {
-        display: none;
-      }
-      .ant-image-preview-img {
-        max-height: 50%;
-      }
-      .ant-image-img {
-        visibility: hidden;
-      }
-      .ant-image-preview-operations-wrapper {
-        position: relative;
-        .ant-image-preview-footer {
-          position: absolute;
-        }
-      }
-    `,
-  }));
   const { styles } = useStyle();
+
   return (
     <div ref={divRef} className={styles.mockPreview}>
       <Image
         {...restProps}
-        width={'100%'}
+        width="100%"
         preview={{
           movable: false,
           styles: {
